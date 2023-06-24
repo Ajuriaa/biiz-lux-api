@@ -27,6 +27,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_000515) do
     t.integer "role"
     t.string "first_name"
     t.string "last_name"
+    t.string "phone_number"
+    t.string "identification_number"
     t.index ["jti"], name: "index_users_on_jti", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
