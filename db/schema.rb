@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_23_000515) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_24_004633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "drivers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "score", default: 5
+    t.string "license"
+    t.date "license_expiration_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_drivers_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -34,4 +44,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_000515) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "drivers", "users"
 end
