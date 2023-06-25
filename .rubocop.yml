@@ -1,0 +1,105 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'config/**/*'
+    - 'db/migrate/*.rb'
+    - 'db/data/*.rb'
+    - 'db/data_schema.rb'
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+    - 'bin/*'
+    - Gemfile
+    - Rakefile
+    - config.ru
+    - app/controllers/graphql_controller.rb
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'db/seeds.rb'
+RSpec/InstanceVariable:
+  Exclude:
+    - 'spec/controllers/graphql_controller_spec.rb'
+Metrics/BlockLength:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Style/ExponentialNotation:
+  Enabled: true
+Style/GuardClause:
+  Enabled: false
+Metrics/ParameterLists:
+  Enabled: false
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+Style/SlicingWithRange:
+  Enabled: true
+Metrics/MethodLength:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Performance/AncestorsInclude:
+  Enabled: true
+Performance/BigDecimalWithNumericArgument:
+  Enabled: true
+Performance/RedundantSortBlock:
+  Enabled: true
+Performance/RedundantStringChars:
+  Enabled: true
+Performance/ReverseFirst:
+  Enabled: true
+Performance/SortReverse:
+  Enabled: true
+Performance/Squeeze:
+  Enabled: true
+Performance/StringInclude:
+  Enabled: true
+Style/StringConcatenation:
+  Enabled: false
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
+RSpec/FilePath:
+  Enabled: false
+Rails/FilePath:
+  Enabled: false
+Rails/UniqBeforePluck:
+  Enabled: false
+Rails/SkipsModelValidations:
+  Enabled: false
+RSpec/MessageSpies:
+  Enabled: false
+Style/MissingRespondToMissing:
+  Enabled: false
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+Lint/SuppressedException:
+  Enabled: false
+Rails/ResponseParsedBody:
+  Enabled: false
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
