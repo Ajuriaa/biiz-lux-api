@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_24_010114) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_25_034638) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,15 +19,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_24_010114) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_admins_on_user_id"
-  end
-
-  create_table "customers", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.integer "score"
-    t.string "payment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
   create_table "drivers", force: :cascade do |t|
@@ -40,8 +31,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_24_010114) do
     t.index ["user_id"], name: "index_drivers_on_user_id"
   end
 
+  create_table "passengers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "score"
+    t.string "payment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_passengers_on_user_id"
+  end
+
   create_table "trips", force: :cascade do |t|
-    t.bigint "customer_id", null: false
+    t.bigint "passenger_id", null: false
     t.bigint "driver_id", null: false
     t.bigint "vehicle_id", null: false
     t.json "start_location"
@@ -53,8 +53,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_24_010114) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_trips_on_customer_id"
     t.index ["driver_id"], name: "index_trips_on_driver_id"
+    t.index ["passenger_id"], name: "index_trips_on_passenger_id"
     t.index ["vehicle_id"], name: "index_trips_on_vehicle_id"
   end
 
@@ -93,10 +93,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_24_010114) do
   end
 
   add_foreign_key "admins", "users"
-  add_foreign_key "customers", "users"
   add_foreign_key "drivers", "users"
-  add_foreign_key "trips", "customers"
+  add_foreign_key "passengers", "users"
   add_foreign_key "trips", "drivers"
+  add_foreign_key "trips", "passengers"
   add_foreign_key "trips", "vehicles"
   add_foreign_key "vehicles", "drivers"
 end
