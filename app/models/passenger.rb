@@ -1,4 +1,4 @@
 class Passenger < ApplicationRecord
-  belongs_to :user
+  has_one :user, as: :userable
   has_many :trips
 end

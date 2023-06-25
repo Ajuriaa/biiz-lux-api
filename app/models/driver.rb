@@ -1,5 +1,5 @@
 class Driver < ApplicationRecord
-  belongs_to :user
+  has_one :user, as: :userable
   has_many :vehicles
   has_many :trips
 end
