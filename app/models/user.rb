@@ -7,4 +7,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :userable, polymorphic: true, optional: true
+
+  def short_name
+    "#{first_name.split.first} #{last_name.split.first}"
+  end
+
+  def full_name
+    [first_name, last_name].join(' ').strip
+  end
 end
