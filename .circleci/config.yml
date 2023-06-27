@@ -18,7 +18,7 @@ jobs:
           POSTGRES_DB: biz_api_test
           POSTGRES_PASSWORD: ""
 
-    working_directory: ~/lms_api
+    working_directory: ~/biz_api
 
     steps:
       - checkout
