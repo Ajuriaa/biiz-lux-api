@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Admin do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'has a valid factory' do
+    expect(create(:user, :admin_user)).to be_valid
+  end
 end

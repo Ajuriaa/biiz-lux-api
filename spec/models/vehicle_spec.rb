@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Vehicle do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let!(:driver) { create(:driver) }
+  let!(:vehicle) { create(:vehicle, driver:) }
+
+  it 'has a valid factory' do
+    expect(vehicle).to be_valid
+  end
 end
