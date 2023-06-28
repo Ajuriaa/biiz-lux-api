@@ -7,7 +7,10 @@ RSpec.describe User do
 
   # Validations
   it { is_expected.to validate_presence_of(:username) }
-  it { is_expected.to validate_length_of(:username).is_at_most(50) }
+  it { is_expected.to validate_length_of(:username).is_at_most(20) }
+  it { is_expected.to validate_presence_of(:email) }
+  it { is_expected.to validate_presence_of(:identification_number) }
+  it { is_expected.to validate_presence_of(:phone_number) }
   it { is_expected.to validate_presence_of(:first_name) }
   it { is_expected.to validate_presence_of(:last_name) }
 

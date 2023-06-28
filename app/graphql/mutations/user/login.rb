@@ -6,7 +6,8 @@ class Mutations::User::Login < GraphQL::Schema::Mutation
 
   def resolve(attributes:)
     attributes = attributes.to_kwargs
-    user = User.find_for_authentication(username: attributes[:username])
+    user = User.find_for_authentication(email: attributes[:username]) ||
+           User.find_for_authentication(username: attributes[:username])
     return raise GraphQL::ExecutionError, 'Usuario inválido' unless user
 
     valid_for_auth = user.valid_for_authentication? ? user.valid_password?(attributes[:password]) : false
