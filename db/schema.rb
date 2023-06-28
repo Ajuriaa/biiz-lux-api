@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_27_182356) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_27_235001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.string "longitude"
+    t.string "latitude"
+    t.boolean "primary"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -96,6 +108,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_182356) do
     t.index ["driver_id"], name: "index_vehicles_on_driver_id"
   end
 
+  add_foreign_key "addresses", "users"
   add_foreign_key "admins", "users"
   add_foreign_key "drivers", "users"
   add_foreign_key "passengers", "users"
