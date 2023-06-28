@@ -14,7 +14,7 @@ class Mutations::User::Login < GraphQL::Schema::Mutation
     if valid_for_auth
       user
     else
-      raise GraphQL::ExecutionError, 'Invalid credentials'
+      raise GraphQL::ExecutionError, 'Contraseña incorrecta'
     end
   end
 end

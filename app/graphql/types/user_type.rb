@@ -10,6 +10,8 @@ module Types
     field :token, String, null: false
     field :role, String, null: false
     field :userable, Types::UserableType, null: true
+    field :image_url, String, null: false
+    field :birthdate, String, null: false
     field :identification_number, String, null: false
     field :phone_number, String, null: false
   end

@@ -18,7 +18,7 @@ RSpec.describe User do
   describe '#set_default_role' do
     let(:user) { build(:user) }
 
-    it 'sets role to admin' do
+    it 'sets role to passenger' do
       expect(user.role).to eq 'passenger'
     end
   end
