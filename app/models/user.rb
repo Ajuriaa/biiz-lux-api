@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :userable, polymorphic: true, optional: true
-
+  has_many :addresses, dependent: :destroy
   GENDERS = %w[female male].freeze
   enum role: { admin: 0, passenger: 1, driver: 2 }, _suffix: true
   after_initialize :set_default_role, if: :new_record?
