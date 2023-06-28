@@ -18,9 +18,7 @@ class CreateNewUser < BizAction::Base
     user_attributes[:username] = generate_username(user_attributes[:first_name], user_attributes[:last_name])
     user_attributes[:image_url] = default_image_url(user_attributes[:gender])
     user_attributes[:role] = role
-    user = create_user(user_attributes)
-
-    user
+    create_user(user_attributes)
   end
 
   private
@@ -36,7 +34,7 @@ class CreateNewUser < BizAction::Base
     user_exist = User.find_by(username: first + last)
 
     if user_exist
-      first + last + format("%03d", rand(1..999))
+      first + last + format('%03d', rand(1..999))
     else
       first + last
     end

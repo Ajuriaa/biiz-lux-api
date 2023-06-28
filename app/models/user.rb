@@ -14,6 +14,8 @@ class User < ApplicationRecord
 
   validates :gender, inclusion: { in: GENDERS }
   validates :username, presence: true
+  validates :identification_number, presence: true
+  validates :phone_number, presence: true
   validates :username, length: { maximum: 50 }
   validates :first_name, presence: true
   validates :last_name, presence: true

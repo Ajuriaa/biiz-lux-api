@@ -8,9 +8,7 @@ class Mutations::User::CreateUser < GraphQL::Schema::Mutation
   def resolve(role:, user_attributes:)
     user = user_attributes.to_kwargs
 
-    if email_validation(user[:email])
-      raise GraphQL::ExecutionError, 'Tu email ya fue registrado por otro usuario.'
-    end
+    raise GraphQL::ExecutionError, 'Tu email ya fue registrado por otro usuario.' if email_validation(user[:email])
 
     new_user = CreateNewUser.run(role:, user_attributes: user)
 

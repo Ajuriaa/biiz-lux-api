@@ -6,6 +6,8 @@ FactoryBot.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     email { Faker::Internet.email }
+    phone_number { format('%03d', rand(1..999)) }
+    identification_number { format('%03d', rand(1..999)) }
     gender { 'male' }
 
     trait :admin_user do
