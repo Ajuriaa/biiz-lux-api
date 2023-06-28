@@ -1,6 +1,6 @@
 require_relative 'connection_helpers'
 
-class LmsApiSchema < GraphQL::Schema
+class BizApiSchema < GraphQL::Schema
   # Include connections for pagination
   include ConnectionHelpers
 

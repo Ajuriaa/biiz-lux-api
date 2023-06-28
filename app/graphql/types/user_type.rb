@@ -9,7 +9,6 @@ module Types
     field :full_name, String, null: false
     field :token, String, null: false
     field :role, String, null: false
-    field :first_password, String, null: true
     field :userable, Types::UserableType, null: true
     field :identification_number, String, null: false
     field :phone_number, String, null: false
