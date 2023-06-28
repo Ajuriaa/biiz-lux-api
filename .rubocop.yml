@@ -104,3 +104,5 @@ Rails/ResponseParsedBody:
   Enabled: false
 Rails/HasManyOrHasOneDependent:
   Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false

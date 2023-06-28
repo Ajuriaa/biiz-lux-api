@@ -27,6 +27,10 @@ class User < ApplicationRecord
     [first_name, last_name].join(' ').strip
   end
 
+  def jwt_subject
+    id.to_s
+  end
+
   private
 
   def set_default_role
