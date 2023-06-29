@@ -1,6 +1,6 @@
 module GraphqlSpecHelper
   def graphql!
-    BizLuxApiSchema.execute(
+    BizApiSchema.execute(
       @query,
       context: @context,
       variables: @variables
