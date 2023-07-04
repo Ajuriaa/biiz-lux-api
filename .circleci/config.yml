@@ -15,10 +15,10 @@ jobs:
         environment:
           POSTGRES_USER: root
           POSTGRES_HOST_AUTH_METHOD: trust
-          POSTGRES_DB: biz_api_test
+          POSTGRES_DB: biiz_api_test
           POSTGRES_PASSWORD: ""
 
-    working_directory: ~/biz_api
+    working_directory: ~/biiz_api
 
     steps:
       - checkout

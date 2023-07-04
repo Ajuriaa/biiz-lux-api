@@ -1,4 +1,4 @@
-module BizAction
+module BiizAction
   module RailsHelpers
     extend ActiveSupport::Concern
     included do

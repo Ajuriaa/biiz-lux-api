@@ -1,4 +1,4 @@
-class CreateNewUser < BizAction::Base
+class CreateNewUser < BiizAction::Base
   params do
     param :role
     param :user_attributes # {}
@@ -24,7 +24,7 @@ class CreateNewUser < BizAction::Base
   private
 
   def default_image_url(gender)
-    "https://biz-app-bucket.s3.us-east-2.amazonaws.com/#{gender}.png"
+    "https://biiz-app-bucket.s3.us-east-2.amazonaws.com/#{gender}.png"
   end
 
   def generate_username(first_name, last_name)

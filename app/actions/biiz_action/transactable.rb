@@ -2,7 +2,7 @@ begin
   require 'active_record'
 rescue LoadError
   module ActiveRecord
-    Rollback = Class.new(BizAction::Error)
+    Rollback = Class.new(BiizAction::Error)
 
     class Base
       def self.transaction(*)
@@ -13,7 +13,7 @@ rescue LoadError
   end
 end
 
-module BizAction
+module BiizAction
   module Transactable
     extend ActiveSupport::Concern
 

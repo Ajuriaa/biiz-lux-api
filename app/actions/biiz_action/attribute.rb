@@ -1,4 +1,4 @@
-class BizAction::Attribute
+class BiizAction::Attribute
   attr_reader :name, :default
   attr_writer :value
 
