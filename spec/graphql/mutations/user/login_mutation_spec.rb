@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe BizApiSchema do
+RSpec.describe BiizApiSchema do
   before do
     # reset vars and context
     prepare_query_variables({})

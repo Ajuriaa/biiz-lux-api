@@ -1,4 +1,4 @@
-module BizAction
+module BiizAction
   class ValidationBuilder
     def initialize(opts = {})
       @opts = opts

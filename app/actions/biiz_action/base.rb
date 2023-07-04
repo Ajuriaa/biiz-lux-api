@@ -1,4 +1,4 @@
-module BizAction
+module BiizAction
   class Base
     extend AcceptsParams
     extend Transactable

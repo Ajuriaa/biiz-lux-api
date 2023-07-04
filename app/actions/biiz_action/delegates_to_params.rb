@@ -1,4 +1,4 @@
-module BizAction
+module BiizAction
   module DelegatesToParams
     extend ActiveSupport::Concern
 

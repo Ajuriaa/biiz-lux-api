@@ -1,4 +1,4 @@
-module BizAction
+module BiizAction
   module Validations
     extend ActiveModel::Validations
 
@@ -15,7 +15,7 @@ module BizAction
     end
 
     def validate!
-      raise BizParamsError, errors.to_hash.to_s unless valid?
+      raise BiizParamsError, errors.to_hash.to_s unless valid?
     end
   end
 end

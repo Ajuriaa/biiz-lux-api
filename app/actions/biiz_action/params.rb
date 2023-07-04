@@ -1,4 +1,4 @@
-module BizAction
+module BiizAction
   class Params
     extend ActiveModel::Naming
     include ActiveModel::Validations
@@ -37,7 +37,7 @@ module BizAction
       end
 
       def add_validations(name, opts = {})
-        validations = BizAction::ValidationBuilder.new(opts).build
+        validations = BiizAction::ValidationBuilder.new(opts).build
         validates name, validations unless validations.empty?
       end
     end
@@ -55,7 +55,7 @@ module BizAction
     end
 
     def errors
-      @_errors ||= BizAction::Errors.new(self)
+      @_errors ||= BiizAction::Errors.new(self)
     end
 
     # Old custom methods

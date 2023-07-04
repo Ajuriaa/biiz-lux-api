@@ -8,7 +8,7 @@ class GraphqlController < ApplicationController
      current_user: current_user,
      login: method(:sign_in)
     }
-    result = BizApiSchema.execute(
+    result = BiizApiSchema.execute(
       query,
       variables: variables,
       context: context,
