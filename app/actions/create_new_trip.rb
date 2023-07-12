@@ -7,13 +7,13 @@ class CreateNewTrip < BiizAction::Base
   end
 
   def execute
-    passenger = Passenger.find(:passenger_id)
-    driver = Driver.find(:driver_id)
-    vehicle = Vehicle.find(:vehicle_id)
+    passenger = Passenger.find(passenger_id:)
+    driver = Driver.find(driver_id:)
+    vehicle = Vehicle.find(vehicle_id:)
 
-    return errors.add(:passenger, 'Pasajero no registrado.') unless passenger
-    return errors.add(:driver, 'Conductor no registrado.') unless driver
-    return errors.add(:vehicle, 'Vehiculo no registrado.') unless vehicle
+    return errors.add(:passenger, 'Pasajero no Existe.') unless passenger
+    return errors.add(:driver, 'Conductor no Existe.') unless driver
+    return errors.add(:vehicle, 'Vehiculo no Existe.') unless vehicle
 
     trip_attributes[:passenger] = passenger
     trip_attributes[:driver] = driver
