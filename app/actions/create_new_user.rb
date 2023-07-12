@@ -32,9 +32,8 @@ class CreateNewUser < BiizAction::Base
     last = last_name.split.first.parameterize
 
     username = count > 1 ? "#{first}#{last}#{format('%03d', rand(1..999))}#{count}" : "#{first}#{last}"
-    user_exist = User.find_by(username:)
 
-    if user_exist
+    if User.exists?(username:)
       generate_username(first_name, last_name, count + 1)
     else
       username
