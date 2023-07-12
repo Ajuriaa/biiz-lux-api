@@ -117,6 +117,33 @@ RSpec.describe BiizApiSchema do
       end
     end
 
+    context 'when username already exists' do
+      let!(:existing_user) { create(:user, username: 'johndoe') }
+
+      before do
+        prepare_query_variables(
+          {
+            role: 'driver',
+            userAttributes: {
+              email: Faker::Internet.email,
+              firstName: 'john',
+              lastName: 'doe',
+              gender: 'male',
+              birthdate: '24/12/2000',
+              phoneNumber: Faker::PhoneNumber.phone_number,
+              identificationNumber: Faker::IDNumber.brazilian_citizen_number,
+              password: Faker::Internet.password
+            }
+          }
+        )
+      end
+
+      it 'generates a unique username' do
+        graphql!
+        expect(User.last.username).not_to eq(existing_user.username)
+      end
+    end
+
     context 'when the fields are unique' do
       it 'returns the user' do
         expect(graphql!['data']['signUp']).to be_truthy
