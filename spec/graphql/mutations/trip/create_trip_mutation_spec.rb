@@ -1,80 +1,69 @@
 require 'rails_helper'
 
 RSpec.describe BiizApiSchema do
+  let!(:driver_user) { create(:user, :driver_user) }
+  let!(:driver) { create(:driver, user_id: driver_user.id, id: 1) }
+  let!(:vehicle) { create(:vehicle, driver:) }
+  let!(:passenger_user) { create(:user, :passenger_user) }
+  let!(:passenger) { create(:passenger, user_id: passenger_user.id, id: 2) }
+
   before do
     # reset vars and context
-    prepare_query_variables(
-      {
-        passenger_id: 1,
-        driver_id: 2,
-        vehicle_id: 3,
-        trip_attributes: {
-          start_location: {
-            latitude: Faker::Address.latitude,
-            longitude: Faker::Address.longitude
-          },
-          end_location: {
-            latitude: Faker::Address.latitude,
-            longitude: Faker::Address.longitude
-          },
-          start_time: Faker::Time.between(from: Time.zone.now, to: 2.hours.from_now),
-          end_time: '',
-          distance: rand(100..1000), # assuming distance is in meters
-          fare: rand(5..15), # assuming currency is in dollars
-          status: 'pending'
-        }
-      }
-    )
+    prepare_query_variables({})
     prepare_context({})
 
     # set query
     prepare_query("
       mutation createTrip(
-        passenger_id: ID!,
-        driver_id: ID!,
-        vehicle_id: ID!,
-        $userAttributes: TripInput!
+        $passengerId: Int!,
+        $vehicleId: Int!,
+        $tripAttributes: TripInput!
       ){
-            passenger_id: $passenger_id,
-            driver_id: $driver_id,
-            vehicle_id: $vehicle_id,
-            userAttributes: $trip_attributes
+        createTrip(
+          passengerId: $passengerId,
+          vehicleId: $vehicleId,
+          tripAttributes: $tripAttributes
+        ){
+          status
+          driver{
+            id
+          }
+          passenger{
+            id
+          }
+        }
       }
     ")
   end
 
   describe 'create new trip' do
-    context 'when the passenger does not exists' do
-      let!(:driver) { create(:driver) }
-      let!(:vehicle) { create(:vehicle, driver:) }
-
+    context 'when the user is not a passenger' do
       before do
         prepare_query_variables(
           {
-            passenger_id: 1,
-            driver_id: driver.id,
-            vehicle_id: vehicle.id,
-            trip_attributes: {
-              start_location: {
-                latitude: Faker::Address.latitude,
-                longitude: Faker::Address.longitude
+            passengerId: passenger.id,
+            vehicleId: vehicle.id,
+            tripAttributes: {
+              startLocation: {
+                latitude: '1',
+                longitude: '1'
               },
-              end_location: {
-                latitude: Faker::Address.latitude,
-                longitude: Faker::Address.longitude
+              endLocation: {
+                latitude: '1',
+                longitude: '1'
               },
-              start_time: Faker::Time.between(from: Time.zone.now, to: 2.days.from_now),
-              end_time: '',
-              distance: rand(100..1000), # assuming distance is in meters
-              fare: rand(5..15), # assuming currency is in dollars
+              startTime: '17:00',
+              distance: rand(100..1000),
+              fare: '1',
               status: 'pending'
             }
           }
         )
+        prepare_context({ current_user: driver_user })
       end
 
       it 'returns an error' do
-        expect(graphql!['errors'][0]['message']).to eq('Pasajero no registrado.')
+        expect(graphql!['errors'][0]['message']).to eq('No tienes permisos para crear un viaje.')
       end
     end
   end
