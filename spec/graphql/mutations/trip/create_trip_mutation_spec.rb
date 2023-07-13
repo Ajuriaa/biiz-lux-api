@@ -66,5 +66,65 @@ RSpec.describe BiizApiSchema do
         expect(graphql!['errors'][0]['message']).to eq('No tienes permisos para crear un viaje.')
       end
     end
+
+    context 'when the passenger does not exists' do
+      before do
+        prepare_query_variables(
+          {
+            passengerId: -1,
+            vehicleId: vehicle.id,
+            tripAttributes: {
+              startLocation: {
+                latitude: '1',
+                longitude: '1'
+              },
+              endLocation: {
+                latitude: '1',
+                longitude: '1'
+              },
+              startTime: '17:00',
+              distance: rand(100..1000),
+              fare: '1',
+              status: 'pending'
+            }
+          }
+        )
+        prepare_context({ current_user: passenger_user })
+      end
+
+      it 'returns an error' do
+        expect(graphql!['errors'][0]['message']).to eq('Pasajero no existe.')
+      end
+    end
+
+    context 'when the vehicle does not exists' do
+      before do
+        prepare_query_variables(
+          {
+            passengerId: passenger.id,
+            vehicleId: -1,
+            tripAttributes: {
+              startLocation: {
+                latitude: '1',
+                longitude: '1'
+              },
+              endLocation: {
+                latitude: '1',
+                longitude: '1'
+              },
+              startTime: '17:00',
+              distance: rand(100..1000),
+              fare: '1',
+              status: 'pending'
+            }
+          }
+        )
+        prepare_context({ current_user: passenger_user })
+      end
+
+      it 'returns an error' do
+        expect(graphql!['errors'][0]['message']).to eq('Vehículo no existe.')
+      end
+    end
   end
 end
