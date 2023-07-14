@@ -126,5 +126,40 @@ RSpec.describe BiizApiSchema do
         expect(graphql!['errors'][0]['message']).to eq('Vehículo no existe.')
       end
     end
+
+    context 'when the fields exist' do
+      before do
+        prepare_query_variables(
+          {
+            passengerId: passenger.id,
+            vehicleId: vehicle.id,
+            tripAttributes: {
+              startLocation: {
+                latitude: '1',
+                longitude: '1'
+              },
+              endLocation: {
+                latitude: '1',
+                longitude: '1'
+              },
+              startTime: '17:00',
+              distance: rand(100..1000),
+              fare: '1',
+              status: 'pending'
+            }
+          }
+        )
+        prepare_context({ current_user: passenger_user })
+      end
+
+      it 'returns the trip' do
+        expect(graphql!['data']['createTrip']).to be_truthy
+      end
+
+      it 'creates the trip record' do
+        graphql!
+        expect(Trip.count).to eq(1)
+      end
+    end
   end
 end
