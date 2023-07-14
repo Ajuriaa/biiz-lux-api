@@ -27,16 +27,16 @@ class CreateNewUser < BiizAction::Base
     "https://biiz-app-bucket.s3.us-east-2.amazonaws.com/#{gender}.png"
   end
 
-  def generate_username(first_name, last_name)
+  def generate_username(first_name, last_name, count = 1)
     first = first_name.split.first.parameterize
     last = last_name.split.first.parameterize
 
-    user_exist = User.find_by(username: first + last)
+    username = count > 1 ? "#{first}#{last}#{format('%03d', rand(1..999))}#{count}" : "#{first}#{last}"
 
-    if user_exist
-      first + last + format('%03d', rand(1..999))
+    if User.exists?(username:)
+      generate_username(first_name, last_name, count + 1)
     else
-      first + last
+      username
     end
   end
 
