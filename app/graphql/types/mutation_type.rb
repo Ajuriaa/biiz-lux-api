@@ -8,5 +8,8 @@ module Types
 
     # Trips
     field :create_trip, mutation: Mutations::Trip::CreateTrip
+
+    # Vehicles
+    field :create_vehicle, mutation: Mutations::Vehicle::CreateVehicle
   end
 end
