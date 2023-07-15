@@ -15,7 +15,7 @@ FactoryBot.define do
     end
 
     trait :driver_user do
-      role { :drive }
+      role { :driver }
     end
 
     trait :passenger_user do
