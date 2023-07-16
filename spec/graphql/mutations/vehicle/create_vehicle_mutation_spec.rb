@@ -21,20 +21,7 @@ RSpec.describe BiizApiSchema do
           driverId: $driverId,
           vehicleAttributes: $vehicleAttributes
         ){
-          color
-          driver {
-            id
-            license
-            licenseExpirationDate
-            score
-          }
-          id
-          model
           plate
-          registration
-          registrationExpirationDate
-          vehicleType
-          year
         }
       }
     ")
@@ -133,7 +120,7 @@ RSpec.describe BiizApiSchema do
       end
 
       it 'returns the vehicle' do
-        expect(graphql!['data']['createVehicle']).to be_truthy
+        expect(graphql!['data']['createVehicle']['plate']).to eq('IAMC4RR1')
       end
 
       it 'creates the vehicle record' do

@@ -6,7 +6,7 @@ class CreateNewVehicle < BiizAction::Base
 
   def execute
     existing_driver = Driver.exists?(id: driver_id)
-    expiration_date = Date.parse(vehicle_attributes[:registration_expiration_date])
+    expiration_date = vehicle_attributes[:registration_expiration_date].to_date
 
     return errors.add(:vehicle, 'Conductor no existe.') unless existing_driver
     return errors.add(:vehicle, 'Fecha de registro tiene que ser vigente.') if expiration_date < Time.zone.now
