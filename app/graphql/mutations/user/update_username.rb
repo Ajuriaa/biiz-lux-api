@@ -17,8 +17,6 @@ class Mutations::User::UpdateUsername < GraphQL::Schema::Mutation
       else
         raise GraphQL::ExecutionError, update_user.errors[:user].first
       end
-    else
-      raise GraphQL::ExecutionError, 'No tienes permisos actualizar usuario.'
     end
   end
 end
