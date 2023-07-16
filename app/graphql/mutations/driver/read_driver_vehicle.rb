@@ -1,4 +1,4 @@
-class Mutations::Driver::ReadVehicle < GraphQL::Schema::Mutation
+class Mutations::Driver::ReadDriverVehicle < GraphQL::Schema::Mutation
   null true
   description 'Read driver vehicles.'
   argument :driver_id, Integer, required: true
