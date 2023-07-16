@@ -10,13 +10,13 @@ class Mutations::User::UpdateUsername < GraphQL::Schema::Mutation
     ability = Ability.for(current_user)
 
     if ability.can?(:update, User)
-      update_user = UpdateUsername.run(user_id:, username:)
+      raise GraphQL::ExecutionError, 'Usuario no existe.' unless User.exists?(id: user_id)
+      raise GraphQL::ExecutionError, 'Nombre de usuario ya existe.' if User.find_by(username:)
 
-      if update_user.valid?
-        update_user.result
-      else
-        raise GraphQL::ExecutionError, update_user.errors[:user].first
-      end
+      user = User.find_by(id: user_id)
+      user.update(username:)
+      user.save!
+      user
     end
   end
 end
