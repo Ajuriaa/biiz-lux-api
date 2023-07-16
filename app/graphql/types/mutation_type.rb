@@ -8,5 +8,8 @@ module Types
 
     # Trips
     field :create_trip, mutation: Mutations::Trip::CreateTrip
+
+    # User
+    field :update_username, mutation: Mutations::User::UpdateUsername
   end
 end
