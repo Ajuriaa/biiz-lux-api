@@ -11,5 +11,9 @@ module Types
 
     # User
     field :update_username, mutation: Mutations::User::UpdateUsername
+
+    # Vehicles
+    field :create_vehicle, mutation: Mutations::Vehicle::CreateVehicle
+
   end
 end
