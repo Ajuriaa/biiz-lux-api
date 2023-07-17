@@ -5,5 +5,8 @@ module Types
 
     # Driver
     field :driver_vehicles, resolver: Resolvers::DriverVehicles
+
+    # Trip
+    field :all_trips, resolver: Resolvers::AllTrips
   end
 end

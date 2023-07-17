@@ -7,10 +7,10 @@ RSpec.describe BiizApiSchema do
     prepare_context({})
   end
 
-  describe 'driver vehicles' do
+  describe 'current user trip list' do
     before do
       prepare_query('{
-        driverVehicles {
+        allTrips {
           id
         }
       }')
@@ -22,11 +22,11 @@ RSpec.describe BiizApiSchema do
       end
     end
 
-    context 'when the user is not a driver' do
-      let!(:passenger_user) { create(:user, :passenger_user) }
+    context 'when the user is not a driver or passenger' do
+      let!(:admin) { create(:user, :admin_user) }
 
       before do
-        prepare_context({ current_user: passenger_user })
+        prepare_context({ current_user: admin })
       end
 
       it 'returns an error' do
@@ -34,18 +34,21 @@ RSpec.describe BiizApiSchema do
       end
     end
 
-    context 'when the user is a driver' do
+    context 'when the user is a driver or passenger' do
+      let!(:passenger_user) { create(:user) }
+      let!(:passenger) { create(:passenger, user_id: passenger_user.id) }
       let!(:driver) { create(:driver) }
       let!(:driver_user) { create(:user, :driver_user, userable: driver) }
+      let!(:vehicle) { create(:vehicle, driver:) }
 
       before do
-        create(:vehicle, driver_id: driver.id)
-        create(:vehicle, driver_id: driver.id)
+        create(:trip, driver:, vehicle:, passenger:)
+        create(:trip, driver:, vehicle:, passenger:)
         prepare_context({ current_user: driver_user })
       end
 
-      it 'returns the vehicles information' do
-        expect(graphql!['data']['driverVehicles'].count).to eq(2)
+      it 'returns the trip list' do
+        expect(graphql!['data']['allTrips'].count).to eq(2)
       end
     end
   end
