@@ -11,11 +11,9 @@ RSpec.describe BiizApiSchema do
     # set query
     prepare_query("
       mutation updateUsername(
-        $userId: Int!,
         $username: String!
       ){
         updateUsername(
-          userId: $userId,
           username: $username
         ){
           id
@@ -26,27 +24,10 @@ RSpec.describe BiizApiSchema do
   end
 
   describe 'update username' do
-    context 'when the user does not exist' do
-      before do
-        prepare_query_variables(
-          {
-            userId: -1,
-            username: driver_user.username
-          }
-        )
-        prepare_context({ current_user: driver_user })
-      end
-
-      it 'returns an error' do
-        expect(graphql!['errors'][0]['message']).to eq('Usuario no existe.')
-      end
-    end
-
     context 'when the username exist' do
       before do
         prepare_query_variables(
           {
-            userId: driver_user.id,
             username: driver_user.username
           }
         )
@@ -62,7 +43,6 @@ RSpec.describe BiizApiSchema do
       before do
         prepare_query_variables(
           {
-            userId: driver_user.id,
             username: 'newuser01'
           }
         )
