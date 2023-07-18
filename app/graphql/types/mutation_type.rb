@@ -14,6 +14,5 @@ module Types
 
     # Vehicles
     field :create_vehicle, mutation: Mutations::Vehicle::CreateVehicle
-
   end
 end
