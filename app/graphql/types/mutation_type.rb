@@ -9,6 +9,9 @@ module Types
     # Trips
     field :create_trip, mutation: Mutations::Trip::CreateTrip
 
+    # User
+    field :update_username, mutation: Mutations::User::UpdateUsername
+
     # Vehicles
     field :create_vehicle, mutation: Mutations::Vehicle::CreateVehicle
   end
