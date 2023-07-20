@@ -5,32 +5,27 @@ RSpec.describe BiizApiSchema do
 
   before do
     # reset vars and context
-    prepare_query_variables({})
+    prepare_query_variables({ username: 'test' })
     prepare_context({})
 
     # set query
     prepare_query("
-      mutation updateUsername(
-        $username: String!
-      ){
-        updateUsername(
-          username: $username
-        ){
-          id
-          username
-        }
+      mutation updateUsername($username: String!){
+        updateUsername(username: $username)
       }
     ")
   end
 
   describe 'update username' do
-    context 'when the username exist' do
+    context 'when there is no current user' do
+      it 'returns a runtime error' do
+        expect { graphql! }.to raise_error(RuntimeError)
+      end
+    end
+
+    context 'when the username is occupied' do
       before do
-        prepare_query_variables(
-          {
-            username: driver_user.username
-          }
-        )
+        prepare_query_variables({ username: driver_user.username })
         prepare_context({ current_user: driver_user })
       end
 
@@ -41,20 +36,12 @@ RSpec.describe BiizApiSchema do
 
     context 'when the fields are valid' do
       before do
-        prepare_query_variables(
-          {
-            username: 'newuser01'
-          }
-        )
+        prepare_query_variables({ username: 'newusername' })
         prepare_context({ current_user: driver_user })
       end
 
-      it 'returns the trip' do
-        expect(graphql!['data']['updateUsername']).to be_truthy
-      end
-
       it 'updates username' do
-        expect(graphql!['data']['updateUsername']['username']).to eq('newuser01')
+        expect(graphql!['data']['updateUsername']).to be true
       end
     end
   end
