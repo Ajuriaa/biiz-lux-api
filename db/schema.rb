@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_28_195843) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_24_215240) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.string "name"
     t.string "longitude"
     t.string "latitude"
@@ -23,11 +22,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_195843) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_addresses_on_user_id"
+    t.bigint "passenger_id", null: false
+    t.index ["passenger_id"], name: "index_addresses_on_passenger_id"
   end
 
   create_table "admins", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_admins_on_user_id"
@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_195843) do
   end
 
   create_table "passengers", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.integer "score"
     t.string "payment_method"
     t.datetime "created_at", null: false
@@ -110,7 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_195843) do
     t.index ["driver_id"], name: "index_vehicles_on_driver_id"
   end
 
-  add_foreign_key "addresses", "users"
+  add_foreign_key "addresses", "passengers"
   add_foreign_key "admins", "users"
   add_foreign_key "drivers", "users"
   add_foreign_key "passengers", "users"
