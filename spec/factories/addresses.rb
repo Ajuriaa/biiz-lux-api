@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :address do
-    user
+    passenger
     name { 'Home' }
     longitude { '12.345' }
     latitude { '67.890' }

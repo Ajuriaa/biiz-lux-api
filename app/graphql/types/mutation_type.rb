@@ -14,5 +14,8 @@ module Types
 
     # Vehicles
     field :create_vehicle, mutation: Mutations::Vehicle::CreateVehicle
+
+    # Address
+    field :create_address, mutation: Mutations::Passenger::CreateAddress
   end
 end

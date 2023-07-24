@@ -8,7 +8,6 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   belongs_to :userable, polymorphic: true, optional: true
-  has_many :addresses, dependent: :destroy
   GENDERS = %w[female male].freeze
   enum role: { admin: 0, passenger: 1, driver: 2 }, _suffix: true
   after_initialize :set_default_role, if: :new_record?
