@@ -8,6 +8,7 @@ module Types
 
     # Trip
     field :all_trips, resolver: Resolvers::AllTrips
+    field :trip, resolver: Resolvers::Trip
 
     # Weather
     field :weather, resolver: Resolvers::Weather
