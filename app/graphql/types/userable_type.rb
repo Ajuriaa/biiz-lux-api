@@ -5,5 +5,7 @@ module Types
     field :license, String, null: true
     field :license_expiration_date, String, null: true
     field :payment_method, String, null: true
+    field :bilingual, Boolean, null: true
+    field :experience, Integer, null: true
   end
 end
