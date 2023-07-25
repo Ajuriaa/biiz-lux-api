@@ -7,5 +7,6 @@ module Types
     field :payment_method, String, null: true
     field :bilingual, Boolean, null: true
     field :experience, Integer, null: true
+    field :addresses, [Types::AddressType], null: true
   end
 end
