@@ -5,11 +5,10 @@ FactoryBot.define do
     vehicle
 
     start_location { 0 }
-    end_location { 'license-test' }
+    end_location { 0 }
     start_time { Time.zone.now }
     end_time { Time.zone.now }
     distance { 0 }
     fare { 0 }
-    status { 'test' }
   end
 end

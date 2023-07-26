@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_25_210917) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_26_233448) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,8 +63,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_210917) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.float "distance"
-    t.decimal "fare"
-    t.string "status"
+    t.float "fare"
+    t.string "status", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_trips_on_driver_id"
