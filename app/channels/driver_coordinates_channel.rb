@@ -20,4 +20,9 @@ class DriverCoordinatesChannel < ApplicationCable::Channel
     travel_info = data['info']
     ActionCable.server.broadcast('driver_coordinates_channel', travel_info)
   end
+
+  def confirm_travel(data)
+    puts data
+    ActionCable.server.broadcast('driver_coordinates_channel', data)
+  end
 end
