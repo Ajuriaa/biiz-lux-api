@@ -10,7 +10,6 @@ class Mutations::Trip::CreateTrip < GraphQL::Schema::Mutation
     trip = trip_attributes.to_kwargs
     current_user = context[:current_user]
     ability = Ability.for(current_user)
-    
 
     if ability.can?(:create, Trip) && %w[passenger driver].include?(current_user.role)
       new_trip = CreateNewTrip.run(

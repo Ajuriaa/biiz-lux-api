@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe BiizApiSchema do
-  let!(:driver_user) { create(:user, :driver_user) }
-  let!(:driver) { create(:driver, user_id: driver_user.id, id: 1) }
+  let!(:admin_user) { create(:user, :admin_user) }
+  let!(:driver) { create(:driver, id: 3) }
   let!(:vehicle) { create(:vehicle, driver:) }
-  let!(:passenger_user) { create(:user, :passenger_user) }
-  let!(:passenger) { create(:passenger, user_id: passenger_user.id, id: 2) }
+  let!(:passenger) { create(:passenger, id: 2) }
+  let!(:passenger_user) { create(:user, :passenger_user, userable: passenger) }
 
   before do
     # reset vars and context
@@ -37,20 +37,20 @@ RSpec.describe BiizApiSchema do
   end
 
   describe 'create new trip' do
-    context 'when the user is not a passenger' do
+    context 'when the user is not a passenger or driver' do
       before do
         prepare_query_variables(
           {
-            passengerId: passenger.id,
+            passengerId: passenger_user.id,
             vehicleId: vehicle.id,
             tripAttributes: {
               startLocation: {
-                latitude: '1',
-                longitude: '1'
+                lat: 1,
+                lng: 1
               },
               endLocation: {
-                latitude: '1',
-                longitude: '1'
+                lat: 1,
+                lng: 1
               },
               startTime: '17:00',
               distance: rand(100..1000),
@@ -59,7 +59,7 @@ RSpec.describe BiizApiSchema do
             }
           }
         )
-        prepare_context({ current_user: driver_user })
+        prepare_context({ current_user: admin_user })
       end
 
       it 'returns an error' do
@@ -75,12 +75,12 @@ RSpec.describe BiizApiSchema do
             vehicleId: vehicle.id,
             tripAttributes: {
               startLocation: {
-                latitude: '1',
-                longitude: '1'
+                lat: 1,
+                lng: 1
               },
               endLocation: {
-                latitude: '1',
-                longitude: '1'
+                lat: 1,
+                lng: 1
               },
               startTime: '17:00',
               distance: rand(100..1000),
@@ -101,16 +101,16 @@ RSpec.describe BiizApiSchema do
       before do
         prepare_query_variables(
           {
-            passengerId: passenger.id,
+            passengerId: passenger_user.id,
             vehicleId: -1,
             tripAttributes: {
               startLocation: {
-                latitude: '1',
-                longitude: '1'
+                lat: 1,
+                lng: 1
               },
               endLocation: {
-                latitude: '1',
-                longitude: '1'
+                lat: 1,
+                lng: 1
               },
               startTime: '17:00',
               distance: rand(100..1000),
@@ -131,16 +131,16 @@ RSpec.describe BiizApiSchema do
       before do
         prepare_query_variables(
           {
-            passengerId: passenger.id,
+            passengerId: passenger_user.id,
             vehicleId: vehicle.id,
             tripAttributes: {
               startLocation: {
-                latitude: '1',
-                longitude: '1'
+                lat: 1,
+                lng: 1
               },
               endLocation: {
-                latitude: '1',
-                longitude: '1'
+                lat: 1,
+                lng: 1
               },
               startTime: '17:00',
               distance: rand(100..1000),
