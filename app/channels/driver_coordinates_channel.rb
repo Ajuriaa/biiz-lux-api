@@ -22,7 +22,18 @@ class DriverCoordinatesChannel < ApplicationCable::Channel
   end
 
   def confirm_travel(data)
-    puts data
+    ActionCable.server.broadcast('driver_coordinates_channel', data)
+  end
+
+  def arrived(data)
+    ActionCable.server.broadcast('driver_coordinates_channel', data)
+  end
+
+  def driver_coords(data)
+    ActionCable.server.broadcast('driver_coordinates_channel', data)
+  end
+
+  def finish_trip(data)
     ActionCable.server.broadcast('driver_coordinates_channel', data)
   end
 end
