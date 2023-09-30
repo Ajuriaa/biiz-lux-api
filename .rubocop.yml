@@ -64,6 +64,8 @@ Metrics/PerceivedComplexity:
   Enabled: false
 Metrics/AbcSize:
   Enabled: false
+Naming/AccessorMethodName:
+  Enabled: false
 Performance/AncestorsInclude:
   Enabled: true
 Performance/BigDecimalWithNumericArgument:
