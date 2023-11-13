@@ -4,4 +4,5 @@ class Driver < ApplicationRecord
   has_many :trips
 
   delegate :full_name, :username, to: :user
+  delegate :short_name, to: :user
 end

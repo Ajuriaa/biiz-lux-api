@@ -8,6 +8,7 @@ module Types
     field :bilingual, Boolean, null: true
     field :experience, Integer, null: true
     field :full_name, String, null: false
+    field :short_name, String, null: false
     field :addresses, [Types::AddressType], null: true
     field :user, Types::UserType, null: false
   end

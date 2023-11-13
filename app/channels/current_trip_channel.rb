@@ -8,7 +8,7 @@ class CurrentTripChannel < ApplicationCable::Channel
   end
 
   def send_data(data)
-    data = data['info']
-    ActionCable.server.broadcast("current_trip_#{data['trip_id']}", data)
+    info = data['info']
+    ActionCable.server.broadcast("current_trip_#{data['trip_id']}", info)
   end
 end
