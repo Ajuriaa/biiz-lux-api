@@ -53,8 +53,10 @@ RSpec.describe BiizApiSchema do
                 lng: 1
               },
               startTime: '17:00',
+              startAddress: '',
+              endAddress: '',
               distance: rand(100..1000),
-              fare: '1',
+              fare: 1,
               status: 'pending'
             }
           }
@@ -83,8 +85,10 @@ RSpec.describe BiizApiSchema do
                 lng: 1
               },
               startTime: '17:00',
+              startAddress: '',
+              endAddress: '',
               distance: rand(100..1000),
-              fare: '1',
+              fare: 1,
               status: 'pending'
             }
           }
@@ -113,8 +117,10 @@ RSpec.describe BiizApiSchema do
                 lng: 1
               },
               startTime: '17:00',
+              startAddress: '',
+              endAddress: '',
               distance: rand(100..1000),
-              fare: '1',
+              fare: 1,
               status: 'pending'
             }
           }
@@ -143,8 +149,10 @@ RSpec.describe BiizApiSchema do
                 lng: 1
               },
               startTime: '17:00',
+              startAddress: '',
+              endAddress: '',
               distance: rand(100..1000),
-              fare: '1',
+              fare: 1,
               status: 'pending'
             }
           }
