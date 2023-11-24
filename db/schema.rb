@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_11_075112) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_24_084313) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_11_075112) do
     t.index ["user_id"], name: "index_drivers_on_user_id"
   end
 
+  create_table "events", force: :cascade do |t|
+    t.string "name", null: false
+    t.json "location_coordinates", null: false
+    t.string "address_name", null: false
+    t.string "category", null: false
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_url"
+    t.string "passcorde"
+  end
+
   create_table "passengers", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "score"
@@ -69,7 +81,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_11_075112) do
     t.datetime "updated_at", null: false
     t.string "start_address"
     t.string "end_address"
+    t.bigint "event_id"
     t.index ["driver_id"], name: "index_trips_on_driver_id"
+    t.index ["event_id"], name: "index_trips_on_event_id"
     t.index ["passenger_id"], name: "index_trips_on_passenger_id"
     t.index ["vehicle_id"], name: "index_trips_on_vehicle_id"
   end
@@ -119,6 +133,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_11_075112) do
   add_foreign_key "drivers", "users"
   add_foreign_key "passengers", "users"
   add_foreign_key "trips", "drivers"
+  add_foreign_key "trips", "events"
   add_foreign_key "trips", "passengers"
   add_foreign_key "trips", "vehicles"
   add_foreign_key "vehicles", "drivers"

@@ -15,5 +15,8 @@ module Types
 
     # Weather
     field :weather, resolver: Resolvers::Weather
+
+    # Events
+    field :all_events, resolver: Resolvers::AllEvents
   end
 end
