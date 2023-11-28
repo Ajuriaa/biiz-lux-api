@@ -9,5 +9,6 @@ class DriverAbility < Ability
     can :read, Passenger
     can :read, Event
     can :read, Address
+    can :read, Notification
   end
 end

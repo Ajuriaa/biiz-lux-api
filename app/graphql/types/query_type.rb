@@ -19,5 +19,6 @@ module Types
 
     # Events
     field :all_events, resolver: Resolvers::AllEvents
+    field :notifications, resolver: Resolvers::Notifications
   end
 end

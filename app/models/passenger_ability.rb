@@ -9,5 +9,6 @@ class PassengerAbility < Ability
     can :read, Vehicle
     can :read, Event
     can :read, Driver
+    can :read, Notification
   end
 end
