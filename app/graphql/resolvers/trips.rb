@@ -7,7 +7,7 @@ class Resolvers::Trips < GraphQL::Schema::Resolver
     ability = Ability.for(user)
 
     if %w[driver passenger].include?(user.role) && ability.can?(:read, Trip)
-      user.userable.trips
+      user.userable.trips.order(created_at: :desc)
     else
       raise GraphQL::ExecutionError, 'No tienes permisos para ver esta información.'
     end

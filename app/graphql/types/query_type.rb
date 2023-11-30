@@ -5,6 +5,7 @@ module Types
 
     # Driver
     field :driver_vehicles, resolver: Resolvers::DriverVehicles
+    field :driver_active_car, resolver: Resolvers::DriverActiveCar
 
     # Passenger
     field :addresses, resolver: Resolvers::Addresses
@@ -20,5 +21,8 @@ module Types
     # Events
     field :all_events, resolver: Resolvers::AllEvents
     field :notifications, resolver: Resolvers::Notifications
+
+    # Fare
+    field :fare, resolver: Resolvers::Fare
   end
 end
