@@ -11,13 +11,13 @@ class Resolvers::Fare < GraphQL::Schema::Resolver
     user = context[:current_user]
     ability = Ability.for(user)
 
-    if user.role == 'passenger'
+    if user.role == 'passenger' && ability.can?(:read, Vehicle)
       driver_user = User.find_by(id: driver_id, role: 'driver')
       car_weight = driver_user.userable.main_vehicle.car_weight
 
       fare = FareAlgorithm.run(
         car_weight:,
-        trip_time: Time.zone.now - 6.hours,
+        trip_time: 6.hours.ago,
         phone_battery:,
         driver_availability:,
         distance:,
