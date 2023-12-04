@@ -7,6 +7,8 @@ class DriverAbility < Ability
     can %i[create read update], Trip, driver_id: nil
     can %i[create read update], Vehicle
     can :read, Passenger
+    can :read, Event
     can :read, Address
+    can :read, Notification
   end
 end

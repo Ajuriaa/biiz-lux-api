@@ -7,6 +7,8 @@ module Types
     field :start_location, Types::LocationType, null: false
     field :end_location, Types::LocationType, null: false
     field :start_time, String, null: false
+    field :start_address, String, null: false
+    field :end_address, String, null: false
     field :end_time, String, null: true
     field :distance, Float, null: false
     field :fare, String, null: false

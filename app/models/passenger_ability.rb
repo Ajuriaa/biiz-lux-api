@@ -7,6 +7,8 @@ class PassengerAbility < Ability
     can %i[create read update], Trip
     can %i[create read update], Address
     can :read, Vehicle
+    can :read, Event
     can :read, Driver
+    can :read, Notification
   end
 end

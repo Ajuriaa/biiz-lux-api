@@ -9,5 +9,6 @@ module Types
     field :color, String, null: true
     field :registration, String, null: false
     field :registration_expiration_date, String, null: false
+    field :image_url, String, null: true
   end
 end

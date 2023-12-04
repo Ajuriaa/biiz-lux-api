@@ -6,8 +6,10 @@ module Types
     field :license_expiration_date, String, null: true
     field :payment_method, String, null: true
     field :bilingual, Boolean, null: true
+    field :main_vehicle, Types::VehicleType, null: true
     field :experience, Integer, null: true
     field :full_name, String, null: false
+    field :short_name, String, null: false
     field :addresses, [Types::AddressType], null: true
     field :user, Types::UserType, null: false
   end

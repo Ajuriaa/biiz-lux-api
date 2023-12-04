@@ -8,6 +8,7 @@ module Types
 
     # Trips
     field :create_trip, mutation: Mutations::Trip::CreateTrip
+    field :update_trip_status, mutation: Mutations::Trip::UpdateTripStatus
 
     # User
     field :update_username, mutation: Mutations::User::UpdateUsername

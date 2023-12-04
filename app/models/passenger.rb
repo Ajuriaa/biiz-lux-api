@@ -4,4 +4,5 @@ class Passenger < ApplicationRecord
   has_many :addresses, dependent: :destroy
 
   delegate :full_name, :username, to: :user
+  delegate :short_name, to: :user
 end
