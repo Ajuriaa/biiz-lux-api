@@ -33,6 +33,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_29_083853) do
     t.index ["user_id"], name: "index_admins_on_user_id"
   end
 
+  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
+  end
+
   create_table "drivers", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "score", default: 5

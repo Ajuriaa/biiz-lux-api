@@ -79,6 +79,9 @@ GEM
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
     crass (1.0.6)
+    data_migrate (9.2.0)
+      activerecord (>= 6.1)
+      railties (>= 6.1)
     database_cleaner (2.0.2)
       database_cleaner-active_record (>= 2, < 3)
     database_cleaner-active_record (2.1.0)
@@ -338,6 +341,7 @@ DEPENDENCIES
   bullet
   byebug
   cancancan
+  data_migrate
   database_cleaner
   debug
   devise-jwt (~> 0.11.0)

@@ -7,7 +7,7 @@ class Resolvers::ActiveTrip < GraphQL::Schema::Resolver
     ability = Ability.for(user)
 
     if %w[driver passenger].include?(user.role) && ability.can?(:read, Trip)
-      user.userable.trips.find_by(status: 'active')
+      user.userable.trips.where(status: %w[pending enroute]).first
     else
       raise GraphQL::ExecutionError, 'No tienes permisos para ver esta información.'
     end

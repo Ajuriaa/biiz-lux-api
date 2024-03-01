@@ -4,6 +4,6 @@ class Trip < ApplicationRecord
   belongs_to :vehicle
   belongs_to :event, optional: true
 
-  STATES = %w[active completed canceled].freeze
+  STATES = %w[pending enroute completed canceled].freeze
   validates :status, inclusion: { in: STATES }
 end

@@ -16,7 +16,7 @@ class CreateNewTrip < BiizAction::Base
     trip_attributes[:passenger_id] = passenger.userable.id
     trip_attributes[:vehicle_id] = vehicle_id
     trip_attributes[:driver_id] = driver.id
-    trip_attributes[:status] = 'active'
+    trip_attributes[:status] = 'pending'
     trip = Trip.new(trip_attributes)
     trip.save!
     trip
